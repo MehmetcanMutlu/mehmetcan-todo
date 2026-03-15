@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,8 +12,7 @@
   --accent: #7c5cfc;
   --accent2: #fc5c7d;
   --text: #e8e8f0;
-  --muted: #6b6b80;
-  --success: #4ade80;
+  --muted: #7e809a;
 }
 
 * {
@@ -28,29 +29,31 @@ body {
   overflow-x: hidden;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-/* Animated gradient background */
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 12px;
+}
+
 .bg-grid {
-  background-image: 
+  background-image:
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
 .glow-accent {
   box-shadow: 0 0 40px rgba(124, 92, 252, 0.15);
 }
 
-.glow-pink {
-  box-shadow: 0 0 40px rgba(252, 92, 125, 0.15);
-}
-
-/* Task card hover effect */
 .task-card {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border);
@@ -63,8 +66,7 @@ body {
 }
 
 .task-card.completed {
-  opacity: 0.5;
-  border-color: transparent;
+  opacity: 0.55;
 }
 
 .task-card.completed:hover {
@@ -73,7 +75,6 @@ body {
   border-color: var(--border);
 }
 
-/* Input focus */
 .custom-input {
   background: var(--surface2);
   border: 1px solid var(--border);
@@ -92,7 +93,6 @@ body {
   color: var(--muted);
 }
 
-/* Buttons */
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #9b7bfe);
   color: white;
@@ -111,7 +111,44 @@ body {
   transform: translateY(0);
 }
 
-/* Tag badges */
+.secondary-btn {
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+.secondary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.icon-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  color: #a494ff;
+  background: rgba(124, 92, 252, 0.14);
+}
+
+.icon-btn.danger {
+  color: #fda4af;
+  background: rgba(252, 92, 125, 0.14);
+}
+
 .tag-badge {
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;
@@ -119,31 +156,50 @@ body {
   text-transform: uppercase;
 }
 
-/* Priority dots */
-.priority-high { background: #fc5c7d; }
-.priority-medium { background: #fbbf24; }
-.priority-low { background: #4ade80; }
+.priority-high {
+  background: #fb7185;
+}
 
-/* Fade in animation */
+.priority-medium {
+  background: #fbbf24;
+}
+
+.priority-low {
+  background: #34d399;
+}
+
+.metric-card {
+  border: 1px solid var(--border);
+  background: rgba(17, 17, 24, 0.8);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.metric-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-family: 'DM Mono', monospace;
+}
+
+.metric-value {
+  margin-top: 4px;
+  font-size: 1.3rem;
+  line-height: 1;
+  font-family: 'DM Mono', monospace;
+  color: var(--text);
+}
+
 @keyframes fadeSlideIn {
   from {
     opacity: 0;
     transform: translateY(-12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideOut {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(20px);
   }
 }
 
@@ -151,29 +207,10 @@ body {
   animation: fadeSlideIn 0.3s ease forwards;
 }
 
-/* Stats counter */
-.stat-number {
-  font-family: 'DM Mono', monospace;
-  font-size: 2.5rem;
-  font-weight: 500;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Modal overlay */
-.modal-overlay {
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(6px);
-}
-
-/* Select styling */
 select.custom-input option {
   background: var(--surface2);
 }
 
-/* Checkbox custom */
 .custom-checkbox {
   appearance: none;
   width: 20px;
@@ -205,4 +242,11 @@ select.custom-input option {
 
 .custom-checkbox:hover:not(:checked) {
   border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .task-card:hover {
+    transform: none;
+    box-shadow: 0 8px 24px rgba(124, 92, 252, 0.08);
+  }
 }
